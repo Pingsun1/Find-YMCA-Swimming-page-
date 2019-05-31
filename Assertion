@@ -36,7 +36,7 @@ class LinkedInTest(unittest.TestCase):
     def tearDownClass(cls):
         cls.driver.close()
         cls.driver.quit()
-        print("LinkedIn Test Completed YMCA")
+        print("Test Completed YMCA")
 
 if __name__ == '__main__':
     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='C:/Users/Parallels/PycharmProjects/Project_test/Test/driver/report'))
