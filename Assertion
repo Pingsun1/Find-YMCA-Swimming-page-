@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 import time
+import HtmlTestRunner
 
 class LinkedInTest(unittest.TestCase):
 
@@ -29,12 +30,13 @@ class LinkedInTest(unittest.TestCase):
         elem2.send_keys("Swimming")
         time.sleep(2)
         elem2.send_keys(Keys.RETURN)
-        time.sleep(2)
         assert "No results found." not in self.driver.page_source
 
     @classmethod
     def tearDownClass(cls):
         cls.driver.close()
         cls.driver.quit()
-        print("LinkedIn Test Completed Ping")
+        print("LinkedIn Test Completed YMCA")
 
+if __name__ == '__main__':
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='C:/Users/Parallels/PycharmProjects/Project_test/Test/driver/report'))
