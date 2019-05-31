@@ -1,0 +1,40 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import unittest
+import time
+
+class LinkedInTest(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = webdriver.Chrome()
+        cls.driver.implicitly_wait(5)
+        cls.driver.maximize_window()
+
+    def test_01_title(self):
+        self.driver.get("https://www.google.com/")
+        self.assertEqual(self.driver.title,"Google")
+
+    def test_02_YMCApage(self):
+        elem1 = self.driver.find_element_by_name("q")
+        elem1.send_keys("YMCA")
+        elem1.send_keys(Keys.RETURN)
+        YMCA = self.driver.find_element_by_partial_link_text("the Y : YMCA of the USA")
+        YMCA.click()
+        time.sleep(3)
+        self.assertEqual(self.driver.title,"the Y : YMCA of the USA")
+
+    def test_03_search(self):
+        elem2 = self.driver.find_element_by_id("search-input")
+        elem2.send_keys("Swimming")
+        time.sleep(2)
+        elem2.send_keys(Keys.RETURN)
+        time.sleep(2)
+        assert "No results found." not in self.driver.page_source
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.close()
+        cls.driver.quit()
+        print("LinkedIn Test Completed Ping")
+
