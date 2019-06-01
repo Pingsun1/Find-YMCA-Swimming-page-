@@ -19,6 +19,7 @@ class YMCATest(unittest.TestCase):
     def test_02_YMCApage(self):
         elem1 = self.driver.find_element_by_name("q")
         elem1.send_keys("YMCA")
+        #elem1.submit()works as KeysRETURN
         elem1.send_keys(Keys.RETURN)
         YMCA = self.driver.find_element_by_partial_link_text("the Y : YMCA of the USA")
         YMCA.click()
