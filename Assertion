@@ -8,16 +8,20 @@ class YMCATest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        # creates Chrome session
         cls.driver = webdriver.Chrome()
         cls.driver.implicitly_wait(5)
         cls.driver.maximize_window()
 
     def test_01_title(self):
+        # navigate to google
         self.driver.get("https://www.google.com/")
         self.assertEqual(self.driver.title,"Google")
 
     def test_02_YMCApage(self):
+        #get the search textfield
         elem1 = self.driver.find_element_by_name("q")
+        #enter search YMCA and submit
         elem1.send_keys("YMCA")
         #elem1.submit()works as KeysRETURN
         elem1.send_keys(Keys.RETURN)
